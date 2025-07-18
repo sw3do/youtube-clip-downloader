@@ -106,6 +106,7 @@
       ]
     },
     "win": {
+      "sign": null,
       "certificateFile": null,
       "certificatePassword": null,
       "target": [
