@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 import { app, BrowserWindow, ipcMain, dialog, net } from 'electron'
 import * as path from 'path'
 import * as fs from 'fs'
