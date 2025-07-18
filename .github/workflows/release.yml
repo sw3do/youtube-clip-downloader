@@ -39,38 +39,3 @@ jobs:
         with:
           name: release-${{ matrix.os }}
           path: release/
-
-      - name: Create Release
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          if ! gh release view v1.0.0 >/dev/null 2>&1; then
-            gh release create v1.0.0 --title "Release v1.0.0" --notes "Automated release"
-          fi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Wait for Release Creation
-        if: matrix.os != 'ubuntu-latest'
-        shell: bash
-        run: |
-          for i in {1..30}; do
-            if gh release view v1.0.0 >/dev/null 2>&1; then
-              echo "Release found!"
-              break
-            fi
-            echo "Waiting for release... ($i/30)"
-            sleep 10
-          done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Release Assets
-        shell: bash
-        run: |
-          for file in release/*; do
-            if [ -f "$file" ]; then
-              gh release upload v1.0.0 "$file" --clobber
-            fi
-          done
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
