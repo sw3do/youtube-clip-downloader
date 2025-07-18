@@ -85,9 +85,6 @@
     },
     "mac": {
       "category": "public.app-category.utilities",
-      "hardenedRuntime": false,
-      "gatekeeperAssess": false,
-      "identity": null,
       "target": [
         {
           "target": "dmg",
@@ -106,9 +103,6 @@
       ]
     },
     "win": {
-      "sign": null,
-      "certificateFile": null,
-      "certificatePassword": null,
       "target": [
         {
           "target": "nsis",
