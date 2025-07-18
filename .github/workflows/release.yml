@@ -29,8 +29,33 @@ jobs:
       - name: Build Electron app
         run: npm run build
 
-      - name: Release Electron app
-        run: npm run release
+      - name: Package Electron app
+        run: npm run dist
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.os }}
+          path: release/
+
+      - name: Create Release and Upload Assets
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          if ! gh release view v1.0.0 >/dev/null 2>&1; then
+            gh release create v1.0.0 --title "Release v1.0.0" --notes "Automated release"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CSC_IDENTITY_AUTO_DISCOVERY: false
+
+      - name: Upload Release Assets
+        if: matrix.os != 'ubuntu-latest'
+        run: |
+          for file in release/*; do
+            if [ -f "$file" ]; then
+              gh release upload v1.0.0 "$file" --clobber
+            fi
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

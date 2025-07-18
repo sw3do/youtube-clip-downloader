@@ -22,7 +22,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "pack": "npm run build && electron-builder",
     "dist": "npm run build && electron-builder --publish=never",
-    "release": "npm run build && electron-builder --publish=always",
+    "release": "npm run build && electron-builder --publish=never",
     "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [
