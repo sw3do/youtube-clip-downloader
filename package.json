@@ -85,8 +85,9 @@
     },
     "mac": {
       "category": "public.app-category.utilities",
-      "hardenedRuntime": true,
+      "hardenedRuntime": false,
       "gatekeeperAssess": false,
+      "identity": null,
       "target": [
         {
           "target": "dmg",
