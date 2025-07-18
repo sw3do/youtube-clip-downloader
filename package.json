@@ -83,8 +83,15 @@
     "extraMetadata": {
       "main": "dist/main.js"
     },
+    "publish": {
+      "provider": "github",
+      "owner": "sw3do",
+      "repo": "youtube-clip-downloader",
+      "releaseType": "release"
+    },
     "mac": {
       "category": "public.app-category.utilities",
+      "identity": null,
       "target": [
         {
           "target": "dmg",
