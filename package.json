@@ -106,6 +106,8 @@
       ]
     },
     "win": {
+      "certificateFile": null,
+      "certificatePassword": null,
       "target": [
         {
           "target": "nsis",
