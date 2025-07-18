@@ -51,6 +51,7 @@ jobs:
 
       - name: Wait for Release Creation
         if: matrix.os != 'ubuntu-latest'
+        shell: bash
         run: |
           for i in {1..30}; do
             if gh release view v1.0.0 >/dev/null 2>&1; then
@@ -64,6 +65,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Assets
+        shell: bash
         run: |
           for file in release/*; do
             if [ -f "$file" ]; then
